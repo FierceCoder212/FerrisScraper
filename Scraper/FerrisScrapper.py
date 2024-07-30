@@ -37,8 +37,7 @@ class FerrisScrapper:
             max_workers=self._max_workers
         ) as executor:
             future_to_param = [
-                executor.submit(self._scrape_catalog, item)
-                for item in self._catalogs[0:1]
+                executor.submit(self._scrape_catalog, item) for item in self._catalogs
             ]
             for future in concurrent.futures.as_completed(future_to_param):
                 future.result()
